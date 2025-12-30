@@ -133,6 +133,7 @@ jobs:
           files: Python/coverage.xml
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
+          flags: python
 
       # --------------------------------------------------------
       # CLI smoke tests
