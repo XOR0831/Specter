@@ -14,11 +14,9 @@ from rich.table import Table
 from scanner.core.discovery import discover_hosts
 from scanner.utils.targets import expand_targets
 
-app = typer.Typer(no_args_is_help=True)
 console = Console()
 
 
-@app.callback(invoke_without_command=True)
 def discover(
     target: Annotated[
         str,

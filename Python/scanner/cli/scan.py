@@ -14,11 +14,9 @@ from scanner.core.scanner import ScanConfig, scan_targets
 from scanner.output.json import render_json
 from scanner.output.table import render_table
 
-app = typer.Typer(no_args_is_help=True)
 console = Console()
 
 
-@app.callback(invoke_without_command=True)
 def scan(
     target: Annotated[
         str,

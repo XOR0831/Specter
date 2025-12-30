@@ -10,8 +10,8 @@ from typing import Annotated, Optional
 import typer
 from rich.console import Console
 
-from scanner.cli.discover import app as discover_app
-from scanner.cli.scan import app as scan_app
+from scanner.cli.discover import discover
+from scanner.cli.scan import scan
 from scanner.utils.logging import setup_logging
 
 # Root Typer application
@@ -71,17 +71,13 @@ def main(
 
 
 # Register subcommands
-app.add_typer(
-    scan_app,
-    name="scan",
+app.command(
     help="Scan targets for open ports and services",
-)
+)(scan)
 
-app.add_typer(
-    discover_app,
-    name="discover",
+app.command(
     help="Discover live hosts",
-)
+)(discover)
 
 
 def run() -> None:
