@@ -1,4 +1,4 @@
-name: Python Release
+name: Release
 
 # ------------------------------------------------------------
 # Trigger release automation only on pushes to main

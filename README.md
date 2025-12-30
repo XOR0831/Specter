@@ -1,7 +1,7 @@
 # Specter
 
-[![CI](https://github.com/XOR0831/Specter/actions/workflows/python-ci.yml/badge.svg)](https://github.com/XOR0831/Specter/actions/workflows/ci.yml)
-[![Release](https://github.com/XOR0831/Specter/actions/workflows/python-release.yml/badge.svg)](https://github.com/XOR0831/Specter/actions/workflows/release.yml)
+[![CI](https://github.com/XOR0831/Specter/actions/workflows/python-ci.yml/badge.svg)](https://github.com/XOR0831/Specter/actions/workflows/python-ci.yml)
+[![Release](https://github.com/XOR0831/Specter/actions/workflows/release.yml/badge.svg)](https://github.com/XOR0831/Specter/actions/workflows/release.yml)
 [![Coverage](https://codecov.io/gh/XOR0831/Specter/branch/main/graph/badge.svg)](https://codecov.io/gh/XOR0831/Specter)
 [![License](https://img.shields.io/github/license/XOR0831/Specter)](LICENSE)
 [![Repo Activity](https://img.shields.io/github/commit-activity/m/XOR0831/Specter)](https://github.com/XOR0831/Specter/commits/main)
