@@ -16,6 +16,23 @@ on:
 
 # ------------------------------------------------------------
 # Required permissions for Release Please
+#
+# - contents: write
+#   → allows creating Git tags and GitHub Releases
+#
+# - pull-requests: write
+#   → allows creating and updating Release PRs
+#
+# NOTE:
+# These permissions MUST also be enabled in:
+# Settings → Actions → General → Workflow permissions
+# ------------------------------------------------------------
+permissions:
+  contents: write
+  pull-requests: write
+
+# ------------------------------------------------------------
+# Required permissions for Release Please
 # ------------------------------------------------------------
 permissions:
   # Needed to create Git tags and GitHub releases
@@ -40,7 +57,7 @@ jobs:
       # - Creates release PR OR GitHub release
       # --------------------------------------------------------
       - name: Run Release Please
-        uses: google-github-actions/release-please-action@v4
+        uses: googleapis/release-please-action@v4
         with:
           # Python project release strategy
           release-type: python
@@ -54,3 +71,8 @@ jobs:
 
           # Changelog location (auto-managed)
           changelog-path: Python/CHANGELOG.md
+          
+          # Path to the Python project root
+          # Required because pyproject.toml is NOT at repo root
+          path: Python
+
