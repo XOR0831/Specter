@@ -1,0 +1,47 @@
+name: Enforce Conventional Commits
+
+# ------------------------------------------------------------
+# Run this workflow on pull requests targeting main
+# ------------------------------------------------------------
+on:
+  pull_request:
+    branches:
+      - main
+
+# ------------------------------------------------------------
+# Job: Validate PR title against Conventional Commits
+# ------------------------------------------------------------
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # --------------------------------------------------------
+      # Enforce semantic (conventional) pull request titles
+      #
+      # This ensures:
+      # - Release Please can determine version bumps
+      # - Changelogs are generated automatically
+      # - Commit history stays clean and readable
+      #
+      # Example valid titles:
+      #   feat: add UDP scan support
+      #   fix: handle socket timeout correctly
+      #   docs: update README usage section
+      # --------------------------------------------------------
+      - name: Check PR title
+        uses: amannn/action-semantic-pull-request@v5
+        with:
+          # Allowed conventional commit types
+          types: |
+            feat
+            fix
+            docs
+            chore
+            refactor
+            test
+            ci
+
+          # Scope is optional (e.g. "feat(scanner): ...")
+          # Keeping this false reduces friction for contributors
+          requireScope: false

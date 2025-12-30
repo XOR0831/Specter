@@ -1,0 +1,11 @@
+{
+  "pythonVersion": "3.11",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": false,
+  "reportMissingTypeStubs": false,
+  "exclude": [
+    "**/__pycache__",
+    "**/.venv",
+    "**/tests"
+  ]
+}

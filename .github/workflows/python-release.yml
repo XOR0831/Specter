@@ -1,0 +1,56 @@
+name: Python Release
+
+# ------------------------------------------------------------
+# Trigger release automation only on pushes to main
+# (Release Please will decide if a release is needed)
+# ------------------------------------------------------------
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Only trigger when Python source or dependency lock changes
+      # This prevents unnecessary release checks
+      - "Python/**/*.py"
+      - "Python/**/poetry.lock"
+
+# ------------------------------------------------------------
+# Required permissions for Release Please
+# ------------------------------------------------------------
+permissions:
+  # Needed to create Git tags and GitHub releases
+  contents: write
+
+  # Needed to open / update release PRs
+  pull-requests: write
+
+# ------------------------------------------------------------
+# Release automation job
+# ------------------------------------------------------------
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+
+    steps:
+      # --------------------------------------------------------
+      # Run Release Please
+      # - Detects conventional commits
+      # - Updates CHANGELOG.md
+      # - Bumps version in pyproject.toml
+      # - Creates release PR OR GitHub release
+      # --------------------------------------------------------
+      - name: Run Release Please
+        uses: google-github-actions/release-please-action@v4
+        with:
+          # Python project release strategy
+          release-type: python
+
+          # Name of the package as published (PyPI / metadata)
+          package-name: specter
+
+          # Version source of truth
+          # Release Please will update this automatically
+          version-file: Python/pyproject.toml
+
+          # Changelog location (auto-managed)
+          changelog-path: Python/CHANGELOG.md

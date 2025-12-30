@@ -1,0 +1,143 @@
+name: Python CI
+
+# ------------------------------------------------------------
+# Trigger CI only when Python-related files change
+# ------------------------------------------------------------
+on:
+  push:
+    branches:
+      - main
+    paths:
+      # Source code
+      - "Python/**/*.py"
+      # Dependency lockfile (dependency changes must be tested)
+      - "Python/**/poetry.lock"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "Python/**/*.py"
+      - "Python/**/poetry.lock"
+
+# ------------------------------------------------------------
+# Main CI job
+# ------------------------------------------------------------
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    # Test against all supported Python versions
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    # All commands run from the Python/ directory
+    defaults:
+      run:
+        working-directory: Python
+
+    steps:
+      # --------------------------------------------------------
+      # Checkout repository
+      # --------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --------------------------------------------------------
+      # Install requested Python version
+      # --------------------------------------------------------
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # --------------------------------------------------------
+      # Install Poetry (dependency & packaging manager)
+      # --------------------------------------------------------
+      - name: Install Poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+
+      # --------------------------------------------------------
+      # Configure Poetry to use in-project virtualenv
+      # (keeps CI isolated and predictable)
+      # --------------------------------------------------------
+      - name: Configure Poetry
+        run: |
+          poetry config virtualenvs.create true
+          poetry config virtualenvs.in-project true
+
+      # --------------------------------------------------------
+      # Install dependencies (fails fast if lockfile is broken)
+      # --------------------------------------------------------
+      - name: Install dependencies
+        run: |
+          poetry install
+
+      # --------------------------------------------------------
+      # Linting (code correctness & style issues)
+      # Fast fail before running tests
+      # --------------------------------------------------------
+      - name: Ruff (lint)
+        run: |
+          poetry run ruff check .
+
+      # --------------------------------------------------------
+      # Formatting enforcement
+      # Ensures contributors don’t forget formatting
+      # --------------------------------------------------------
+      - name: Ruff format check
+        run: |
+          poetry run ruff format --check .
+
+      # --------------------------------------------------------
+      # Static security analysis (SAST)
+      # Looks for insecure patterns in Python code
+      # --------------------------------------------------------
+      - name: Bandit (security scan)
+        run: |
+          poetry run bandit -r scanner
+
+      # --------------------------------------------------------
+      # Dependency vulnerability scanning
+      # Fails CI if known vulnerable packages are used
+      # --------------------------------------------------------
+      - name: Dependency vulnerability audit
+        run: |
+          poetry run pip-audit
+
+      # --------------------------------------------------------
+      # Static type checking
+      # Catches bugs tests usually miss
+      # --------------------------------------------------------
+      - name: Type check (pyright)
+        run: |
+          poetry run pyright
+
+      # --------------------------------------------------------
+      # Run tests + generate coverage report
+      # --------------------------------------------------------
+      - name: Run tests with coverage
+        run: |
+          poetry run pytest --cov=scanner --cov-report=xml
+
+      # --------------------------------------------------------
+      # Upload coverage results to Codecov
+      # --------------------------------------------------------
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: Python/coverage.xml
+          fail_ci_if_error: true
+
+      # --------------------------------------------------------
+      # CLI smoke tests
+      # Ensures the CLI actually starts and commands are wired
+      # --------------------------------------------------------
+      - name: CLI smoke tests
+        run: |
+          poetry run specter --help
+          poetry run specter scan --help
+          poetry run specter discover --help

@@ -1,0 +1,86 @@
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# =========================
+# Poetry
+# =========================
+# Poetry creates this optionally; keep it ignored unless you want it committed
+poetry.toml
+
+# =========================
+# Packaging / Distribution
+# =========================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+# Testing
+# =========================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.ruff_cache/
+
+# =========================
+# IDE / Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Logs & Runtime Artifacts
+# =========================
+*.log
+results.json
+output.json
+
+# =========================
+# Security / Secrets
+# =========================
+.env
+.env.*
+*.key
+*.pem
+*.crt
+
+# =========================
+# Local Config Files
+# =========================
+# Future Specter config (do not commit user configs)
+.specter/
+specter.yaml
+specter.yml
+
+# =========================
+# Temporary Files
+# =========================
+tmp/
+temp/
+
+
+# =========================
+# Results
+# =========================
+results.json
