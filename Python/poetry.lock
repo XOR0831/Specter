@@ -413,6 +413,7 @@ license-expression = ">=30,<31"
 packageurl-python = ">=0.11,<2"
 py-serializable = ">=2.1.0,<3.0.0"
 sortedcontainers = ">=2.4.0,<3.0.0"
+typing_extensions = {version = ">=4.6,<5.0", markers = "python_version < \"3.13\""}
 
 [package.extras]
 json-validation = ["jsonschema[format-nongpl] (>=4.25,<5.0)", "referencing (>=0.28.4)"]
@@ -1553,5 +1554,5 @@ dev = ["black (>=19.3b0) ; python_version >= \"3.6\"", "pytest (>=4.6.2)"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.13,<4.0"
-content-hash = "ff4c8176d6e342e283949a642c894839c56b3c808129d8711fe5560d770a889d"
+python-versions = ">=3.11,<4.0"
+content-hash = "2a6cc1d779b6e3a5c88b69d32e990766c2e71135fab63d801b53ec5022a66a1a"
