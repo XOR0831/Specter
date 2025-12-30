@@ -1,0 +1,16 @@
+{
+  "packages": {
+    "Python": {
+      "path": "Python",
+      "release-type": "python"
+    }
+    // "Go": {
+    //   "path": "Go",
+    //   "release-type": "go"
+    // },
+    // "Rust": {
+    //   "path": "Rust",
+    //   "release-type": "rust"
+    // },
+  }
+}

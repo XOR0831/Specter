@@ -38,20 +38,4 @@ jobs:
       - name: Run Release Please
         uses: googleapis/release-please-action@v4
         with:
-          # Python project release strategy
-          release-type: python
-
-          # Name of the package as published (PyPI / metadata)
-          package-name: specter
-
-          # Version source of truth
-          # Release Please will update this automatically
-          version-file: Python/pyproject.toml
-
-          # Changelog location (auto-managed)
-          changelog-path: Python/CHANGELOG.md
-
-          # Path to the Python project root
-          # Required because pyproject.toml is NOT at repo root
-          path: Python
-
+          config-file: .github/release-please-config.json
