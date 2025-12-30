@@ -2,6 +2,13 @@
 
 All notable changes to Specter will be documented in this file.
 
+## [0.1.2](https://github.com/XOR0831/Specter/compare/v0.1.1...v0.1.2) (2025-12-30)
+
+
+### Documentation
+
+* update python readme ([e642383](https://github.com/XOR0831/Specter/commit/e642383429dabbc3973917c412b67912157a1cb4))
+
 ## [0.1.1](https://github.com/XOR0831/Specter/compare/v0.1.0...v0.1.1) (2025-12-30)
 
 
