@@ -1,6 +1,6 @@
 [project]
 name = "specter"
-version = "0.1.2"
+version = "0.2.0"
 description = "Port Scanner with Service Fingerprinter"
 authors = [
     {name = "Daniel Soriano",email = "sorianodanielb99@gmail.com"}
