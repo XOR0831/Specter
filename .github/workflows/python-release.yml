@@ -9,11 +9,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      # Only trigger when Python source or dependency lock changes
-      # This prevents unnecessary release checks
-      - "Python/**/*.py"
-      - "Python/**/poetry.lock"
 
 # ------------------------------------------------------------
 # Required permissions for Release Please
