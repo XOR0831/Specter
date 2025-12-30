@@ -5,6 +5,7 @@ name: Python Release
 # (Release Please will decide if a release is needed)
 # ------------------------------------------------------------
 on:
+  workflow_dispatch:
   push:
     branches:
       - main

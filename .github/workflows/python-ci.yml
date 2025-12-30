@@ -4,6 +4,7 @@ name: Python CI
 # Trigger CI only when Python-related files change
 # ------------------------------------------------------------
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
