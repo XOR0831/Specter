@@ -1,5 +1,6 @@
 [![CI](https://github.com/XOR0831/Specter/actions/workflows/python-ci.yml/badge.svg)](https://github.com/XOR0831/Specter/actions/workflows/python-ci.yml) ![Python](https://img.shields.io/badge/python-3.11-blue) ![License](https://img.shields.io/github/license/XOR0831/Specter)
-![Coverage](https://codecov.io/gh/XOR0831/Specter/branch/main/graph/badge.svg)
+![Coverage](https://codecov.io/gh/XOR0831/Specter/branch/main/graph/badge.svg?flag=python)
+
 
 
 
